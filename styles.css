@@ -1,0 +1,420 @@
+/* =================================
+   3D Cube Viewer - Styles
+   ================================= */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Main container */
+#container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Score Display */
+#scoreDisplay {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 100;
+    color: #333333;
+}
+
+#scoreDisplay h1 {
+    margin: 0;
+    font-size: 72px;
+    font-weight: 300;
+    background: linear-gradient(45deg, #ff922f, #e6830a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: transform 0.15s ease;
+}
+
+#scoreDisplay p {
+    margin: 5px 0 0 0;
+    font-size: 18px;
+    color: #666;
+}
+
+/* Store Button */
+#storeButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    font-size: 18px;
+    background: linear-gradient(45deg, #ff922f, #e6830a);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(255, 146, 47, 0.3);
+}
+
+#storeButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 146, 47, 0.4);
+}
+
+/* Full Width Progress Bar */
+#fullProgressContainer {
+    position: absolute;
+    top: 140px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+#fullProgressBar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ff922f, #e6830a);
+    transition: width 0.3s ease;
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#progressText {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 1;
+}
+
+/* Information panel */
+#info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #333333;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease;
+}
+
+#info h1 {
+    margin: 0 0 15px 0;
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, #ff922f, #e6830a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    transition: transform 0.15s ease, color 0.15s ease;
+}
+
+#info p {
+    margin: 8px 0;
+    font-size: 15px;
+    line-height: 1.5;
+    opacity: 0.9;
+    text-align: center;
+}
+
+/* Progress bar for saturation */
+#progressContainer {
+    margin: 10px 0;
+    width: 200px;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ff922f, #e6830a);
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+#winMessage {
+    display: none;
+    color: #ff922f;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+#info p::before {
+    display: none;
+}
+
+/* Loading spinner (for initial load) */
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 18px;
+    z-index: 50;
+}
+
+.loading.hidden {
+    display: none;
+}
+
+.spinner {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #00bcd4;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Canvas styles */
+canvas {
+    display: block;
+    cursor: grab;
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+canvas:active {
+    cursor: grabbing;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #info {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    #info h1 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    
+    #info p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    #info {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 10px;
+        background: rgba(0, 0, 0, 0.8);
+    }
+    
+    #container {
+        flex-direction: column;
+        padding-top: 20px;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .spinner {
+        animation: none;
+    }
+    
+    #info {
+        transition: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    #info {
+        background: rgba(0, 0, 0, 0.9);
+        border: 2px solid white;
+    }
+}
+
+/* Store Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close:hover {
+    color: #ff922f;
+}
+
+.modal-content h2 {
+    margin: 0 0 20px 0;
+    color: #333;
+    text-align: center;
+    font-size: 32px;
+}
+
+/* Store Items */
+.store-item {
+    background: linear-gradient(135deg, #f8f8f8, #eeeeee);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.store-item:hover {
+    border-color: #ff922f;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 146, 47, 0.2);
+}
+
+.store-item h3 {
+    margin: 0 0 10px 0;
+    color: #ff922f;
+    font-size: 20px;
+}
+
+.store-item p {
+    margin: 0 0 15px 0;
+    color: #666;
+    line-height: 1.4;
+}
+
+.store-item .price {
+    font-weight: bold;
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.store-item .level {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.buy-button {
+    background: linear-gradient(45deg, #ff922f, #e6830a);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.buy-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 146, 47, 0.3);
+}
+
+.buy-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Win Message */
+#winMessage {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ff922f;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    animation: pulse 1s infinite;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 200;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive 3D cube viewer with mouse and touch controls">
+    <meta name="author" content="Andrew Roddy">
+    <meta name="keywords" content="3D, cube, three.js, interactive, webgl">
+    
+    <!-- Page Title -->
+    <title>Cube Clicker</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+    
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" as="script">
+</head>
+
+<body>
+    <!-- Score Display -->
+    <div id="scoreDisplay">
+        <h1 id="clickCounter">0</h1>
+        <p id="multiplierDisplay">x1 multiplier</p>
+    </div>
+
+    <!-- Store Button -->
+    <button id="storeButton">🛒 Store</button>
+
+    <!-- Full Width Progress Bar -->
+    <div id="fullProgressContainer">
+        <div id="fullProgressBar"></div>
+        <br>
+        <span id="progressText">0% saturation</span>
+    </div>
+
+    <!-- Store Modal -->
+    <div id="storeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>🛒 Upgrade Store</h2>
+            <div id="storeItems">
+                <!-- Store items will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Win Message -->
+    <div id="winMessage">🎉 YOU WIN! Maximum saturation achieved! 🎉</div>
+    
+    <!-- Main Container -->
+    <div id="container">
+        <!-- Loading indicator (hidden by CSS once content loads) -->
+        <div class="loading">
+            <div class="spinner"></div>
+            <div>Loading 3D Scene...</div>
+        </div>
+    </div>
+    
+    <!-- External Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Error Handling Script -->
+    <script>
+        // Handle script loading errors
+        window.addEventListener('error', function(e) {
+            if (e.filename && e.filename.includes('three.js')) {
+                console.error('Failed to load Three.js library');
+                document.getElementById('container').innerHTML = 
+                    '<div style="color: white; text-align: center; padding: 50px;">Failed to load required libraries. Please check your internet connection.</div>';
+            }
+        });
+    </script>
+</body>
+</html>
