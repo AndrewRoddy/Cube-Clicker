@@ -1,3 +1,25 @@
+#backButton {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 15px 25px;
+    font-size: 18px;
+    background: linear-gradient(45deg, #e6830a, #ff922f);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 100;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(255, 146, 47, 0.3);
+}
+
+#backButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(47, 146, 255, 0.4);
+}
 /* =================================
    3D Cube Viewer - Styles
    ================================= */
