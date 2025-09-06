@@ -1015,8 +1015,6 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
         const cubeViewer = new CubeViewer();
         
-        // Make it globally accessible for debugging
-        window.cubeViewer = cubeViewer;
         
     } catch (error) {
         console.error('Failed to initialize 3D Cube Viewer:', error);
