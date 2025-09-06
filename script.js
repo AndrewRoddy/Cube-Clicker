@@ -83,7 +83,9 @@ class CubeViewer {
         this.setupEventListeners();
         this.setupRaycaster();
         this.setupStore();
+        this.loadGame(); // Load saved data immediately
         this.startAnimation();
+        this.startAutoSave();
         
         console.log('3D Cube Viewer initialized successfully');
     }
@@ -964,14 +966,16 @@ class CubeViewer {
                 this.scoreMultiplier = gameState.scoreMultiplier || 1;
                 
                 // Update displays
-                this.updateScore();
+                this.updateDisplay();
                 this.updateSaturation();
                 this.updateStoreDisplay();
                 
-                console.log('Game loaded successfully');
+                console.log('Game loaded successfully - Score:', this.clickCount, 'Multiplier:', this.scoreMultiplier);
             } catch (error) {
                 console.error('Error loading save data:', error);
             }
+        } else {
+            console.log('No save data found, starting fresh');
         }
     }
     
@@ -996,6 +1000,19 @@ class CubeViewer {
             if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
         }
         return null;
+    }
+    
+    /**
+     * Start auto-save timer (saves every 10 seconds)
+     */
+    startAutoSave() {
+        // Set up auto-save every 10 seconds
+        this.autoSaveInterval = setInterval(() => {
+            this.saveGame();
+            console.log('Game auto-saved');
+        }, 10000); // 10000ms = 10 seconds
+        
+        console.log('Auto-save started (every 10 seconds)');
     }
 }
 
