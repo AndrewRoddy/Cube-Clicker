@@ -1030,7 +1030,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize the cube viewer
     try {
-        const cubeViewer = new CubeViewer();
+        window.cubeViewer = new CubeViewer();
         
         
     } catch (error) {
